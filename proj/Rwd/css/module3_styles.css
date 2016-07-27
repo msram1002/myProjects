@@ -1,0 +1,36 @@
+body{
+	font-size: 16px;
+	color: #fff;
+	background-color: gray;
+	font-family: 'Oxygen', sans-serif; 
+}
+
+#header-nav{
+	background-color: #f6b319;
+	border-radius: 0;
+	border:0;
+}
+
+a.navbar-brand{
+	font-size: 32px;
+	float:left;
+}
+
+h1,h2{
+	font-family: Times;
+}
+
+#nav-list{
+	background-color: white;
+}
+
+#box1,#box2,#box3{
+	background-color: maroon;
+	border: 2px solid black;
+	padding:10px;
+	border-radius: 30px;
+	height: 700px;
+	margin-bottom: 25px;
+	text-align: justify;
+	overflow: auto;
+}

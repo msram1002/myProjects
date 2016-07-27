@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Vending Machine</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
+
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+</head>
+<body>
+	<header class="jumbotron">
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="container">
+            <div class="row row-header">
+               <h2> Welcome to RAM's <em>Online</em> Vending Machine</h2>
+            </div>
+        </div>
+  	</header>
+  	<div class="row row-content">
+            <div class="col-xs-12 col-sm-3">
+            	<img src="img/coke.jpg" alt="Coke" height="90px" width="60px">
+            	<h4>Each $1.00</h4>
+            	<img src="img/lays.jpg" alt="Chips" height="80px" width="70px">
+            	<h4>Each $0.75</h4>
+            	<img src="img/chocolate.jpg" alt="Chocolate" height="40px" width="
+            	75px">
+            	<h4>Each $0.50</h4>
+            </div>
+
+            <div class="col-xs-12 col-sm-3">
+            	<div class="heading">
+            		<h3>Quantity Available</h3>
+            		<input type="text" name="quantity" value="">
+            		<button onclick="purCoke()" type="button" class="btn btn-primary" id="coke" disabled="true">Purchase</button>
+            	</div>
+            	<div class="heading">
+            		<h3>Quantity Available</h3>
+            		<input type="text" name="quantity" value="">
+            		<button onclick="purChips()" type="button" class="btn btn-primary" id="chips" disabled="true">Purchase</button>
+            	</div>
+            	<div class="heading">
+            		<h3>Quantity Available</h3>
+            		<input type="text" name="quantity" value="">
+            		<button onclick="purChoco()" type="button" class="btn btn-primary" id="choco" disabled="true">Purchase</button>
+            	</div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3">
+            	<div>
+            		<h3>Select the denomination</h3>
+            	</div>
+            	
+                <div>
+            		<button onclick="addPenny()" id="myPenny" type="button" class="btn btn-primary">Penny</button>
+  					<button onclick="addNickel()" id="myNickel" type="button" class="btn btn-success">Nickel</button>
+  					<button onclick="addDime()" id="myDime" type="button" class="btn btn-info">Dime</button>
+  					<button onclick="addQuarter()" id="myQuarters" type="button" class="btn btn-warning">Quarters</button>
+				</div>
+                
+                <div class="heading1">
+                    <h3>Total Amount inserted/ Balance left so far</h3>
+                    <input type="text" name="charge" placeholder="$0.00" id="Update" value="">
+                </div>
+            	
+                <div class="heading1">
+            		<h3>Collect your Change</h3>
+            		<input type="text" name="charge" placeholder="$0.00" id="changeOut" value="">
+            	</div>
+            	
+           	</div>
+    </div>
+
+    <!--            <p style="padding:20px;"></p>
+                <h3 align="center">Our Lipsmacking Culinary Creations</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object img-thumbnail"
+                            src="img/uthappizza.png" alt="Uthappizza">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">Uthappizza <span class="label label-danger">Hot</span><span class="badge">$4.99</span></h2>
+                        <p>A unique combination of Indian Uthappam (pancake) and
+                          Italian pizza, topped with Cerignola olives, ripe vine
+                          cherry tomatoes, Vidalia onion, Guntur chillies and
+                          Buffalo Paneer.</p>
+                        <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
