@@ -1,0 +1,28 @@
+/* Styles go here */
+
+.jumbotron {
+  background-color: #337788;
+  color: floralwhite;
+}
+
+h2 {
+  text-align: center;
+}
+
+hr {
+  height: 5px;
+  border: 0;
+  box-shadow: 0 5px 5px -5px #8c8c8c inset;
+}
+
+td {
+  font-style: italic;
+}
+
+.yellow {
+  background-color: #ffd700;
+}
+
+.row-content {
+  margin-top: 40px;
+}

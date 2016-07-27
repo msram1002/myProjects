@@ -1,0 +1,30 @@
+.jumbotron{
+    background-color: #378;
+}
+
+h2{
+    color: #fff;
+    text-align: center;
+}
+
+img{
+    display:block;
+    vertical-align: middle;
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+
+h4{
+    margin-left: 200px;
+    margin-bottom: 10px;
+}
+
+div.heading{
+    margin-bottom: 80px;
+}
+div.heading1{
+    margin-bottom: 25px;
+}
+button{
+    display:block;
+}
