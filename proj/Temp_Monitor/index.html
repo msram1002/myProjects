@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="app.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header class="jumbotron">
+    <div class="container">
+      <div class="row row-header">
+        <div class="col-xs-12 col-sm-10">
+          <h1>Temperature Monitor <!--<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>--></h1>
+          <h3>A simple page for calculating the <em>median</em> temperature</h3>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" ng-controller="tempMonitor">
+    <div class="row row-content">
+      <div class="col-xs-12">
+        <form class="form-horizontal" role="form" name="myForm">
+          <label for="temperture">
+            <h4>Add Temperature:</h4></label>
+          <input name="temperture" id="temperture" placeholder="Enter a value" ng-model="a" ng-pattern="/^-?\d*\.?\d+$/" required>
+          
+          <button ng-click="myaddFunction()" type="submit" class="btn btn-primary btn-sm">Add</button>
+          <h5 data-ng-show="myForm.$pristine">
+          <em>Enter a value before you click on Add.</em>
+          </h5>
+
+          <span class="has-error" data-ng-show="myForm.temperture.$error.required"></span>
+    
+          <h5 class="has-error" data-ng-show="myForm.temperture.$dirty">
+            <span data-ng-show="myForm.$invalid"><em>Enter only numerical values.</em> <button onclick="myClear()" type="button" class="btn btn-info btn-xs">Clear</button></span>
+          </h5>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div class="row row-content">
+      <div class="col-xs-12">
+        <section>
+          <button ng-click="myMedian()" type="submit" class="btn btn-success btn-md">Get Median Temperture</button>
+          <h4>Current Median: <span ng-bind="medianValue"></span></h4>
+          <!-- display current media here-->
+        </section>
+        <hr />
+        <hr />
+      </div>
+    </div>
+    <p>Developer name: Matta Sundar</p>
+    <hr />
+    <!--<button type="button" class="btn btn-warning" href="jasmine-test-runner.html">Run Unit Tests</button>-->
+
+
+    <a href="jasmine-test-runner.html">Run Unit Tests</a>
+
+  </div>
+
+  
+
+
+  
+</body>
+
+</html>
