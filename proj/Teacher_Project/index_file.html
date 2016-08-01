@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.7/angular-local-storage.min.js"></script>
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-xs-12 col-sm-12">
+                    <h2>Software Development Course - 101</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" ng-controller="studentDetails">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-12 col-sm-offset-1">
+                <form role="form" name="myForm" class="form-inline">
+                    <div class="form-group">
+                        <label for="studentName">
+                            <h4>Name of the Student:</h4></label>
+                        <input class="form-control" type="text" name="studentName" id="studentName" ng-model="stuname">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentMarks">
+                            <h4>Student Score:</h4></label>
+                        <input class="form-control" type="number" name="studentMarks" id="studentMarks" ng-model="stuscore">
+                    </div>
+
+                    <button ng-click="addStudent()" type="submit" class="btn btn-success" data-toggle="button" aria-pressed="false" autocomplete="off">Add</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row row-content">
+
+            <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr class="info">
+                            <th>STUDENT NAME</th>
+                            <th>STUDENT SCORE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="student in students">
+                            <td>
+                                <input type="text" ng-model="student.name" ng-change="onChange()" class="inputstyle">
+                            </td>
+                            <td ng-class="{'yellow':(student.marks > 0 && student.marks < 65)}">
+                                <input type="text" ng-model="student.marks" ng-change="onChange()" class="inputstyle">
+                            </td>
+                            <td>
+                                <button ng-click="deleteStudent(student)" type="button" class="btn btn-danger btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"><span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>          
+                    </tbody>
+                </table>
+                 
+                <div>
+                    <b>Total Student(s):</b>&nbsp{{students.length}}
+                </div>
+                <div>
+                    <b><u>Note:</u></b>&nbspScore(s) less than "65" would be highlighted in yellow
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-sm-offset-1">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr class="info">
+                            <th colspan=2>CLASS STATISTICS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Minimum Score</b></td>
+                            <td ng-bind="min"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Maximum Score</b></td>
+                            <td ng-bind="max"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Average Score</b></td>
+                            <td ng-bind="avg"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
