@@ -17,17 +17,18 @@ var Main = React.createClass({
 
         <MediaQuery minDeviceWidth={700}>
           <div style={mainStyle}>
-            <Header/>
-            {this.props.children}
+              <Header/>
+              {this.props.children}
           </div>
         </MediaQuery>
 
         <MediaQuery maxDeviceWidth={700}>
           <div style={mainStyle2}>
-            <Header/>
-            {this.props.children}
+              <Header/>
+              {this.props.children}
           </div>
         </MediaQuery>
+
       </div>
     );
   }
