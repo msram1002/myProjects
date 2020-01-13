@@ -9,7 +9,7 @@
   "author": "Matta",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.14.0",
+    "axios": "^0.19.1",
     "express": "^4.14.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
