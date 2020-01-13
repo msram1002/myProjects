@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="calculator.css"/>
+</head>
+
+<body>
+    <h1>Basic Calculator</h1>
+    <input type="text" id="calDisplay" value="0" class="cal-display">
+    <div>
+        <button onclick="whichOperator('+')">+</button>
+        <button onclick="whichOperator('-')">-</button>
+        <button onclick="whichOperator('*')">*</button>
+        <button onclick="whichOperator('/')">/</button>
+    </div>
+    <div>
+        <button onclick="whatNumber(7)">7</button>
+        <button onclick="whatNumber(8)">8</button>
+        <button onclick="whatNumber(9)">9</button>
+    </div>
+    <div>
+        <button onclick="whatNumber(4)">4</button>
+        <button onclick="whatNumber(5)">5</button>
+        <button onclick="whatNumber(6)">6</button>
+    </div>
+    <div>
+        <button onclick="whatNumber(1)">1</button>
+        <button onclick="whatNumber(2)">2</button>
+        <button onclick="whatNumber(3)">3</button>
+    </div>
+    <div>
+        <button onclick="whatNumber(0)">0</button>
+        <button>.</button>
+        <button onclick="resetCal()">C</button>
+    </div>
+    <div>
+        <button onclick="finalResult()">=</button>
+    </div>
+    <script text="text/javascript" src="calculator.js"></script>
+</body>
+
+</html>

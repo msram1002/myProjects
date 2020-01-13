@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    margin-top: 10rem;
+}
+
+.cal-display {
+    width: 250px;
+    height: 25px;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    background: #000;
+    font-size: 2rem;
+    padding: 0.5rem;
+    text-align: right;
+}
+
+div button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+    color: black;
+    background: lightgrey;
+    padding: 0.25rem;
+    font-size: 2rem;
+}
