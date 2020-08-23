@@ -86,9 +86,22 @@ class UI {
                     // Upon refresh we need to have this list again
                     // so saving in localStorage
                     Storage.saveCartItems(cart);
+                    // Update the cart count
+                    this.setCartValues(cart);
                 })
             }
         })
+    }
+    setCartValues(cart) {
+        let tempTotal = 0;
+        let itemsTotal = 0;
+        cart.map(cartItem => {
+            tempTotal += cartItem.price * cartItem.amount;
+            itemsTotal += cartItem.amount;
+        });
+        // Using parseFloat for the multiplication
+        cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+        cartItems.innerText = itemsTotal;
     }
 }
 // local storage
