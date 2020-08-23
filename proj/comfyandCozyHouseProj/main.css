@@ -136,7 +136,7 @@ body {
   overflow: hidden;
 }
 
-.bag-btn {
+.addto-cart-btn {
   position: absolute;
   top: 70%;
   right: 0;
@@ -150,7 +150,7 @@ body {
   cursor: pointer;
 }
 
-.bag-btn:hover {
+.addto-cart-btn:hover {
   color: var(--mainGrey);
 }
 
@@ -158,7 +158,7 @@ body {
   margin-right: 0.5rem;
 }
 
-.img-container:hover .bag-btn {
+.img-container:hover .addto-cart-btn {
   transform: translateX(0);
 }
 

@@ -49,7 +49,7 @@ class UI {
                 <div class="img-container">
                     <img src="${product.image}" alt ="product"
                     class="product-img">
-                    <button class="bag-btn" data-id=${product.id}>
+                    <button class="addto-cart-btn" data-id=${product.id}>
                         <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                     </button> 
@@ -63,7 +63,7 @@ class UI {
     getAddtoCartButtons() {
         // spread operator gets the output in an array
         // instead of a nodeList
-        const addtoCartbtns = [...document.querySelectorAll('.bag-btn')];
+        const addtoCartbtns = [...document.querySelectorAll('.addto-cart-btn')];
         console.log(addtoCartbtns);
     }
 }
