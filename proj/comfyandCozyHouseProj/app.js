@@ -63,13 +63,18 @@ class UI {
 }
 // local storage
 class Storage {
-
+    // static method can be used without instantiating the class
+    static saveProducts(prodArray) {
+        localStorage.setItem("products", JSON.stringify(prodArray));
+    }
 }
 // Event Listener
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
     // get all the products
-    products.getProducts().then(proddata =>
-        ui.displayProducts(proddata));
-})
+    products.getProducts().then(proddata => {
+        ui.displayProducts(proddata);
+        Storage.saveProducts(proddata);
+    });
+});
