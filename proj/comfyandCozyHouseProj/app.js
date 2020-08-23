@@ -102,14 +102,14 @@ class UI {
     }
     setCartValues(cart) {
         let tempTotal = 0;
-        let itemsTotal = 0;
+        let itemsTotalinCart = 0;
         cart.map(cartItem => {
             tempTotal += cartItem.price * cartItem.amount;
-            itemsTotal += cartItem.amount;
+            itemsTotalinCart += cartItem.amount;
         });
         // Using parseFloat for the multiplication
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
-        cartItems.innerText = itemsTotal;
+        cartItems.innerText = itemsTotalinCart;
     }
     addCartItem(item) {
         const div = document.createElement('div');
@@ -151,12 +151,55 @@ class UI {
         clearCartBtn.addEventListener('click', () => {
             this.clearCart();
         });
+        // cart functionality for individual items
+        // for removing, increasing/ decreasing count
+        cartContent.addEventListener('click', event => {
+            if (event.target.classList.contains('remove-item')) {
+                let removeItem = event.target;
+                this.removeCartItem(removeItem.dataset.id);
+                // Remove also from cartContent DOM
+                // Using event bubbling to access parent item of parent
+                cartContent.removeChild(removeItem.parentElement.parentElement);
+            } else if (event.target.classList.contains('fa-chevron-up')) {
+                let addAmount = event.target;
+                // getting the item from cart variable
+                let addItem = cart.find(item => item.id === addAmount.dataset.id);
+                // update the item count as we have seperate amount property
+                addItem.amount += 1;
+                // update to storage as amount has been updated
+                Storage.saveCartItems(cart);
+                // update DOM to reflect the total items in cart 
+                // and total amount under cart total
+                this.setCartValues(cart);
+                // update individual item count
+                addAmount.nextElementSibling.innerText = addItem.amount;
+            } else if (event.target.classList.contains('fa-chevron-down')) {
+                let lowerAmount = event.target;
+                // getting the item from cart variable
+                let lowerItem = cart.find(item => item.id === lowerAmount.dataset.id);
+                // lower the item count as we have seperate amount property
+                lowerItem.amount -= 1;
+                // if item count reaches zero, adding additional logic
+                // to remove the item from Cart Content DOM as well
+                if (lowerItem.amount > 0) {
+                    // update to storage as amount has been updated
+                    Storage.saveCartItems(cart);
+                    // update DOM to reflect the total items in cart 
+                    // and total amount under cart total
+                    this.setCartValues(cart);
+                    // update individual item count
+                    lowerAmount.previousElementSibling.innerText = lowerItem.amount;
+                } else {
+                    this.removeCartItem(lowerAmount.dataset.id);
+                    cartContent.removeChild(lowerAmount.parentElement.parentElement);
+                }
+            }
+        })
     }
     clearCart() {
         // Need to know the id of items we are clearing
         let cartItemsCleared = cart.map(item => item.id);
         cartItemsCleared.forEach(id => this.removeCartItem(id));
-        console.log(cartContent.children);
         // Remove the items from Cart DOM
         while (cartContent.children.length > 0) {
             cartContent.removeChild(cartContent.children[0])
