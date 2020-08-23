@@ -60,6 +60,12 @@ class UI {
         });
         productDOM.innerHTML = resultProduct;
     }
+    getAddtoCartButtons() {
+        // spread operator gets the output in an array
+        // instead of a nodeList
+        const addtoCartbtns = [...document.querySelectorAll('.bag-btn')];
+        console.log(addtoCartbtns);
+    }
 }
 // local storage
 class Storage {
@@ -76,5 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
     products.getProducts().then(proddata => {
         ui.displayProducts(proddata);
         Storage.saveProducts(proddata);
+    }).then(() => {
+        // calling the method after the products have been displayed
+        ui.getAddtoCartButtons();
     });
 });
