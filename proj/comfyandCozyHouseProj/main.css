@@ -8,16 +8,19 @@
   --mainSpacing: 0.1rem;
   --mainTransition: all 0.3s linear;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   color: var(--mainBlack);
   background: var(--mainWhite);
   font-family: "Lato", sans-serif;
 }
+
 /* --------------- Navbar ---------------- */
 .navbar {
   position: sticky;
@@ -29,6 +32,7 @@ body {
   background: rgb(231, 226, 221);
   z-index: 1;
 }
+
 .navbar-center {
   width: 100%;
   max-width: 1170px;
@@ -38,64 +42,77 @@ body {
   justify-content: space-between;
   padding: 0 1.5rem;
 }
+
 .nav-icon {
   font-size: 1.5rem;
 }
+
 .cart-btn {
   position: relative;
   cursor: pointer;
 }
+
 .cart-items {
   position: absolute;
   top: -8px;
-  right: -8px;
+  right: -14px;
   background: var(--primaryColor);
   padding: 0 5px;
-  border-radius: 30%;
+  border-radius: 20%;
   color: var(--mainWhite);
 }
+
 /* --------------- End of Navbar ---------------- */
 /* --------------- Hero ---------------- */
 .hero {
+  /* 60 px is height of the navbar */
   min-height: calc(100vh - 60px);
   background: url("./images/hero-bcg.jpeg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .banner {
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
   display: inline-block;
   padding: 2rem;
 }
+
 .banner-title {
-  font-size: 3.4rem;
+  font-size: 3rem;
   text-transform: uppercase;
   letter-spacing: var(--mainSpacing);
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
+
 .banner-btn {
-  padding: 1rem 3rem;
+  padding: 0.75rem;
   text-transform: uppercase;
   letter-spacing: var(--mainSpacing);
-  font-size: 1rem;
+  font-size: 0.75rem;
   background: var(--primaryColor);
   color: var(--mainBlack);
   border: 1px solid var(--primaryColor);
+  border-radius: 0.25rem;
   transition: var(--mainTransition);
   cursor: pointer;
+  font-weight: bold;
 }
+
 .banner-btn:hover {
   background: transparent;
-  color: var(--primaryColor);
+  border: 1px solid var(--mainBlack);
 }
+
 /* --------------- End of Hero ---------------- */
 /* --------------- Products ---------------- */
 
 .products {
   padding: 4rem 0;
 }
+
 .section-title h2 {
   text-align: center;
   font-size: 2.5rem;
@@ -103,6 +120,7 @@ body {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
+
 .products-center {
   width: 90vw;
   margin: 0 auto;
@@ -112,17 +130,18 @@ body {
   grid-column-gap: 1.5rem;
   grid-row-gap: 2rem;
 }
+
 .img-container {
   position: relative;
   overflow: hidden;
 }
+
 .bag-btn {
   position: absolute;
   top: 70%;
   right: 0;
   background: var(--primaryColor);
   border: none;
-  text-transform: uppercase;
   padding: 0.5rem 0.75rem;
   letter-spacing: var(--mainSpacing);
   font-weight: bold;
@@ -130,21 +149,26 @@ body {
   transform: translateX(101%);
   cursor: pointer;
 }
+
 .bag-btn:hover {
-  color: var(--mainWhite);
+  color: var(--mainGrey);
 }
+
 .fa-shopping-cart {
   margin-right: 0.5rem;
 }
+
 .img-container:hover .bag-btn {
   transform: translateX(0);
 }
+
 .product-img {
   display: block;
   width: 100%;
   min-height: 12rem;
   transition: var(--mainTransition);
 }
+
 .img-container:hover .product-img {
   opacity: 0.5;
 }
@@ -175,8 +199,9 @@ body {
   transition: var(--mainTransition);
   background: rgb(240, 157, 81, 0.5);
   z-index: 2;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
+
 .cart {
   position: fixed;
   top: 0;
@@ -188,14 +213,17 @@ body {
   background: rgb(231, 226, 221);
   padding: 1.5rem;
   transition: var(--mainTransition);
-  transform: translateX(100%);
+  /* transform: translateX(100%); */
 }
+
 .showCart {
   transform: translateX(0);
 }
+
 .transparentBcg {
   visibility: visible;
 }
+
 @media screen and (min-width: 768px) {
   .cart {
     width: 30vw;
@@ -204,15 +232,17 @@ body {
 }
 
 .close-cart {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
-.cart h2 {
+
+.cart h3 {
   text-transform: capitalize;
   text-align: center;
   letter-spacing: var(--mainSpacing);
   margin-bottom: 2rem;
 }
+
 /*---------- Cart Item -------------------- */
 .cart-item {
   display: grid;
@@ -221,31 +251,39 @@ body {
   grid-column-gap: 1.5rem;
   margin: 1.5rem 0;
 }
+
 .cart-item img {
   width: 75px;
   height: 75px;
 }
-.cart-item h4 {
-  font-size: 0.85rem;
+
+.cart-item h5 {
+  font-size: 1rem;
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
-.cart-item h5 {
+
+.cart-item h6 {
+  font-size: 0.85rem;
   margin: 0.5rem 0;
   letter-spacing: var(--mainSpacing);
 }
+
 .item-amount {
   text-align: center;
 }
+
 .remove-item {
   color: grey;
   cursor: pointer;
 }
+
 .fa-chevron-up,
 .fa-chevron-down {
   color: var(--primaryColor);
   cursor: pointer;
 }
+
 /*---------- End of Cart Item -------------------- */
 
 .cart-footer {
@@ -253,6 +291,7 @@ body {
   letter-spacing: var(--mainSpacing);
   text-align: center;
 }
+
 .cart-footer h3 {
   text-transform: capitalize;
   margin-bottom: 1rem;
