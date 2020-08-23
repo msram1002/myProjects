@@ -127,6 +127,10 @@ class UI {
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
     }
+    hideCart() {
+        cartOverlay.classList.remove('transparentBcg');
+        cartDOM.classList.remove('showCart');
+    }
     populateCart(cart) {
         cart.forEach(item => this.addCartItem(item))
     }
@@ -134,6 +138,8 @@ class UI {
         cart = Storage.getCartItems();
         this.setCartValues(cart);
         this.populateCart(cart);
+        cartBtn.addEventListener('click', this.showCart);
+        closeCartBtn.addEventListener('click', this.hideCart);
     }
 }
 // local storage
