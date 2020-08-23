@@ -64,7 +64,20 @@ class UI {
         // spread operator gets the output in an array
         // instead of a nodeList
         const addtoCartbtns = [...document.querySelectorAll('.addto-cart-btn')];
-        console.log(addtoCartbtns);
+        addtoCartbtns.forEach(addtoCartbtn => {
+            let id = addtoCartbtn.dataset.id;
+            // check if item is in cart or not using id
+            let inCart = cart.find(item => item.id === id);
+            if (inCart) {
+                addtoCartbtn.innerText = "In Cart";
+                addtoCartbtn.disabled = true;
+            } else {
+                addtoCartbtn.addEventListener('click', (event) => {
+                    event.target.innerText = "In Cart";
+                    event.target.disabled = true;
+                })
+            }
+        })
     }
 }
 // local storage
