@@ -75,29 +75,29 @@ class UI {
             if (inCart) {
                 addtoCartbtn.innerText = "In Cart";
                 addtoCartbtn.disabled = true;
-            } else {
-                addtoCartbtn.addEventListener('click', (event) => {
-                    event.target.innerText = "In Cart";
-                    event.target.disabled = true;
-                    // now get the product from localStorage products
-                    // add the extra amount using spread operator
-                    let cartItem = {
-                        ...Storage.getProduct(id),
-                        amount: 1
-                    };
-                    // save this cartItem to the cart array
-                    cart = [...cart, cartItem];
-                    // Upon refresh we need to have this list again
-                    // so saving in localStorage
-                    Storage.saveCartItems(cart);
-                    // Update the cart count
-                    this.setCartValues(cart);
-                    // Display the cart item
-                    this.addCartItem(cartItem);
-                    // show the cart when we click on the icon
-                    this.showCart();
-                })
             }
+            // attach click event listener to add to cart buttons
+            addtoCartbtn.addEventListener('click', (event) => {
+                event.target.innerText = "In Cart";
+                event.target.disabled = true;
+                // now get the product from localStorage products
+                // add the extra amount using spread operator
+                let cartItem = {
+                    ...Storage.getProduct(id),
+                    amount: 1
+                };
+                // save this cartItem to the cart array
+                cart = [...cart, cartItem];
+                // Upon refresh we need to have this list again
+                // so saving in localStorage
+                Storage.saveCartItems(cart);
+                // Update the cart count
+                this.setCartValues(cart);
+                // Display the cart item
+                this.addCartItem(cartItem);
+                // show the cart when we click on the icon
+                this.showCart();
+            })
         })
     }
     setCartValues(cart) {
