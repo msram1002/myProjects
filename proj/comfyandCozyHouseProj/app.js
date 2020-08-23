@@ -12,7 +12,14 @@ const productDOM = document.querySelector('.products-center');
 let cart = [];
 // getting the products
 class Products {
-
+    async getProducts() {
+        try {
+            let result = await fetch('products.json')
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 // display the products
 class UI {
@@ -26,4 +33,6 @@ class Storage {
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
+    // get all the products
+    products.getProducts().then(data => console.log(data));
 })
