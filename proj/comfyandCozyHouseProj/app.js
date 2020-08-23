@@ -75,6 +75,17 @@ class UI {
                 addtoCartbtn.addEventListener('click', (event) => {
                     event.target.innerText = "In Cart";
                     event.target.disabled = true;
+                    // now get the product from localStorage products
+                    // add the extra amount using spread operator
+                    let cartItem = {
+                        ...Storage.getProduct(id),
+                        amount: 1
+                    };
+                    // save this cartItem to the cart array
+                    cart = [...cart, cartItem];
+                    // Upon refresh we need to have this list again
+                    // so saving in localStorage
+                    Storage.saveCartItems(cart);
                 })
             }
         })
@@ -85,6 +96,13 @@ class Storage {
     // static method can be used without instantiating the class
     static saveProducts(prodArray) {
         localStorage.setItem("products", JSON.stringify(prodArray));
+    }
+    static getProduct(id) {
+        let products = JSON.parse(localStorage.getItem('products'));
+        return products.find(products => products.id === id);
+    }
+    static saveCartItems(cartArray) {
+        localStorage.setItem("cart", JSON.stringify(cartArray));
     }
 }
 // Event Listener
