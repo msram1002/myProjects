@@ -10,6 +10,8 @@ const cartContent = document.querySelector('.cart-content');
 const productDOM = document.querySelector('.products-center');
 // cart
 let cart = [];
+// buttons
+let buttonsDOM = [];
 // getting the products
 class Products {
     async getProducts() {
@@ -64,6 +66,8 @@ class UI {
         // spread operator gets the output in an array
         // instead of a nodeList
         const addtoCartbtns = [...document.querySelectorAll('.addto-cart-btn')];
+        // assigning the list to buttonsDOM
+        buttonsDOM = addtoCartbtns;
         addtoCartbtns.forEach(addtoCartbtn => {
             let id = addtoCartbtn.dataset.id;
             // check if item is in cart or not using id
@@ -141,6 +145,40 @@ class UI {
         cartBtn.addEventListener('click', this.showCart);
         closeCartBtn.addEventListener('click', this.hideCart);
     }
+    cartLogic() {
+        // clearing of cart using Clear Cart button
+        // Need to bind clearCart to this UI, we use the arrow function
+        clearCartBtn.addEventListener('click', () => {
+            this.clearCart();
+        });
+    }
+    clearCart() {
+        // Need to know the id of items we are clearing
+        let cartItemsCleared = cart.map(item => item.id);
+        cartItemsCleared.forEach(id => this.removeCartItem(id));
+        console.log(cartContent.children);
+        // Remove the items from Cart DOM
+        while (cartContent.children.length > 0) {
+            cartContent.removeChild(cartContent.children[0])
+        }
+        // Finally hiding the cart after clearing the cart
+        this.hideCart();
+    }
+    removeCartItem(id) {
+        // get the cart elements, filtering all which doesnt match the id
+        cart = cart.filter(item => item.id !== id);
+        // update the cart count and totals
+        this.setCartValues(cart);
+        // update in local storage, the current cart
+        Storage.saveCartItems(cart);
+        // Need to add the 'Add to cart' text
+        let button = this.getSingleButton(id);
+        button.disabled = false;
+        button.innerHTML = `<i class="fas fa-shopping-cart"></i>Add to Cart`;
+    }
+    getSingleButton(id) {
+        return buttonsDOM.find(btn => btn.dataset.id === id);
+    }
 }
 // local storage
 class Storage {
@@ -164,7 +202,7 @@ class Storage {
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
-    // set up the application also upon refresh 
+    // set up the application (also upon refresh) 
     ui.setupAPP()
     // get all the products
     products.getProducts().then(proddata => {
@@ -173,5 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }).then(() => {
         // calling the method after the products have been displayed
         ui.getAddtoCartButtons();
+        ui.cartLogic();
     });
 });
