@@ -90,6 +90,8 @@ class UI {
                     this.setCartValues(cart);
                     // Display the cart item
                     this.addCartItem(cartItem);
+                    // show the cart when we click on the icon
+                    this.showCart();
                 })
             }
         })
@@ -112,7 +114,6 @@ class UI {
             <img src="${item.image}" alt="cart-product">
                 <div>
                     <h5>${item.title}</h5>
-                    <h6>$${item.title}</h6>
                     <span class = "remove-item" data-id=${item.id}>remove</span>
                 </div>
                 <div>
@@ -121,6 +122,10 @@ class UI {
                     <i class="fas fa-chevron-down" data-id=${item.id}></i>
                 </div>`;
         cartContent.appendChild(div);
+    }
+    showCart() {
+        cartOverlay.classList.add('transparentBcg');
+        cartDOM.classList.add('showCart');
     }
 }
 // local storage
