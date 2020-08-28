@@ -1,0 +1,30 @@
+import React from 'react';
+import './App.css';
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import About from "./pages/About";
+import SingleRoom from "./pages/SingleRoom";
+import Error from "./pages/Error";
+import {Switch,Route} from "react-router-dom";
+import Navbar from "./components/Navbar";
+
+function App() {
+  return (
+  <> 
+  <Navbar />
+  {/* The Switch component will work much in the same way 
+    as the Router component.
+    The added functionality of Switch is that it will only 
+    render the first matched <Route/> child. */}
+  <Switch>
+    <Route exact path="/" component={Home}/>
+    <Route exact path="/rooms/" component={Rooms}/>
+    <Route exact path="/about/" component={About}/>
+    <Route exact path="/rooms/:slug" component={SingleRoom}/>
+    <Route component={Error}/>
+  </Switch>
+  </>
+  );
+}
+
+export default App;
