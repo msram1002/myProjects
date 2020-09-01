@@ -11,9 +11,9 @@ export default function Home() {
         // <> is shorter syntax
     <>
     <Main>
-        <Banner title="luxurious rooms" subtitle="deluxe rooms starting at $299">
+        <Banner title="welcoming guests since 2005" subtitle="Enjoy 10% off, booking flexibility, and free breakfast.">
             <Link to="/rooms" className="btn-primary">
-                our rooms
+                stay with us
             </Link>
         </Banner>
     </Main>
