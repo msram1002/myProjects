@@ -1,11 +1,7 @@
-import React from 'react'
-
+import React from 'react';
+import Main from '../components/Main';
 const Rooms = () => {
-    return (
-        <div>
-            hello from rooms page
-        </div>
-    )
+    return <Main main="roomsMain"/>
 }
 
 export default Rooms;

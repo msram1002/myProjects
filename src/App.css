@@ -6,7 +6,7 @@
 
 :root {
   --primaryColor: #af9a7d;
-  --secondaryColor: #243665;
+  --secondaryColor: #ff9933;
   --mainWhite: #fff;
   --offWhite: #f7f7f7;
   --mainBlack: #222;
@@ -109,7 +109,7 @@ h6 {
   width: 100%;
   padding: 0.75rem 2rem;
   background: var(--offWhite);
-  background: #d9f2e9;
+  background: #072c50;
   z-index: 1;
 }
 
@@ -151,7 +151,7 @@ h6 {
 }
 
 .nav-links a:hover {
-  color: #7c94d0;
+  color: var(--offWhite);
 }
 
 .show-nav {
@@ -176,28 +176,28 @@ h6 {
   }
 
   .nav-links a {
-    margin: 1.5rem;
+    margin: 1.25rem 1.5rem;
     padding: 0;
   }
 }
 
 /* end of navbar */
-/* Hero */
-.defaultHero,
-.roomsHero {
+/* Main */
+.defaultMain,
+.roomsMain {
   min-height: calc(100vh - 66px);
-  background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
+  background: url("./images/defaultBcg2.jpeg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.roomsHero {
+.roomsMain {
   background-image: url("./images/room-2.jpeg");
   min-height: 60vh;
 }
 
-/* End of Hero */
+/* End of Main */
 /* Banner */
 .banner {
   display: inline-block;

@@ -1,9 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import Main from '../components/Main';
 export default function Home() {
-    return ( 
-        <div>
-            hello from home page
-        </div>
-    )
+    return <Main />
 }
