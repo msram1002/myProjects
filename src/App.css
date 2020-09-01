@@ -184,7 +184,7 @@ h6 {
 /* end of navbar */
 /* Main */
 .defaultMain,
-.roomsMain {
+.roomsMain, .aboutUsMain {
   min-height: calc(100vh - 66px);
   background: url("./images/defaultBcg2.jpeg") center/cover no-repeat;
   display: flex;
@@ -195,6 +195,10 @@ h6 {
 .roomsMain {
   background-image: url("./images/room-2.jpeg");
   min-height: 60vh;
+}
+
+.aboutUsMain {
+  background-image: url("./images/defaultBcg3.jpeg");
 }
 
 /* End of Main */

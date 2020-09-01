@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import Main from '../components/Main';
 
-export default function About() {
-    return ( 
-        <div>
-            hello from about
-        </div>
-    )
+const About = () => {
+    return <Main main="aboutUsMain"/>
 }
+
+export default About;
