@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {RoomContext} from '../Context';
 
 export default class FeaturedRooms extends Component {
@@ -8,7 +8,6 @@ export default class FeaturedRooms extends Component {
         return (
             <div>
                 {greeting} from {name}
-                {}
             </div>
         )
     }
