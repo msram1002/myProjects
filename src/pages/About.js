@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom';
 
 const About = () => {
     return <Main main="aboutUsMain">
-        <Banner title="About Us" 
-        subtitle="We are the best!">
+        <Banner title="we are the best!" 
+        subtitle="at msr beach resorts we know what you want, a seamless stay!">
             <Link to="/" className="btn-primary">
                 return home
             </Link>
