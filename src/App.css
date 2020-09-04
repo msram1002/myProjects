@@ -332,7 +332,8 @@ h6 {
 
 /* featured rooms */
 .featured-rooms {
-  padding: 5rem 0;
+  padding: 3rem 0;
+  background: #00509D;
 }
 
 .featured-rooms-center {
@@ -425,12 +426,13 @@ h6 {
 }
 
 .room-info {
-  background: var(--darkGrey);
   text-transform: capitalize;
   padding: 0.5rem 0;
   text-align: center;
   font-weight: 700;
   letter-spacing: var(--mainSpacing);
+  color: var(--mainWhite);
+  border: 1px solid #003f88;
 }
 
 /* end of room  */
