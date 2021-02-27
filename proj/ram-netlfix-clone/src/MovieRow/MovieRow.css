@@ -1,0 +1,22 @@
+.movierow_posters {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding-bottom: 20px;
+}
+
+.movierow_posters::-webkit-scrollbar {
+  display: none;
+}
+.movierow__poster {
+  width: 100%;
+  object-fit: contain;
+  max-height: 100px;
+  /* Applying a delay to the transform below, we dont want to just pop up and become bigger */
+  transition: transform 450ms;
+  margin-right: 10px;
+}
+
+.movierow__poster:hover {
+  transform: scale(1.08);
+}
