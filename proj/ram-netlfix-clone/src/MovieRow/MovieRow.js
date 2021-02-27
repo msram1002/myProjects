@@ -5,7 +5,7 @@ import './MovieRow.css';
 // For image we need base url
 let img_base_url = "https://image.tmdb.org/t/p/w500";
 
-function MovieRow({title, fetchUrl}) {
+function MovieRow({title, fetchUrl, isLargeRow}) {
   const [movies, setMovies] = useState([]);
   // Need to run piece of code upon a condition
   useEffect(() => {
@@ -29,7 +29,7 @@ function MovieRow({title, fetchUrl}) {
       </div> */}
       <div className="movierow_posters">
         {movies.map((movie) => (
-          <img key={movie.id} className="movierow__poster" src={`${img_base_url}${movie.poster_path}`} alt={movie.name} /> 
+          <img key={movie.id} className="movierow__poster" src={`${img_base_url}${isLargeRow?movie.poster_path: movie.backdrop_path}`} alt={movie.name} /> 
         ))}
       </div>
     </div>
