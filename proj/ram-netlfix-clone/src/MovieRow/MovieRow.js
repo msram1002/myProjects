@@ -19,8 +19,6 @@ function MovieRow({title, fetchUrl}) {
     fetchMovieData();
   }, [fetchUrl]);
 
-  console.log(movies);
-
   return (
     <div className="movierow">
       <h2>{title}</h2>
@@ -31,7 +29,7 @@ function MovieRow({title, fetchUrl}) {
       </div> */}
       <div className="movierow_posters">
         {movies.map((movie) => (
-          <img className="movierow__poster" src={`${img_base_url}${movie.poster_path}`} alt={movie.name} /> 
+          <img key={movie.id} className="movierow__poster" src={`${img_base_url}${movie.poster_path}`} alt={movie.name} /> 
         ))}
       </div>
     </div>

@@ -6,6 +6,7 @@
 }
 
 .movierow_posters::-webkit-scrollbar {
+  /* Hiding the scroll bar */
   display: none;
 }
 .movierow__poster {
