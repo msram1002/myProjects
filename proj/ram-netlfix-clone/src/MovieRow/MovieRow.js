@@ -29,7 +29,10 @@ function MovieRow({title, fetchUrl, isLargeRow}) {
       </div> */}
       <div className="movierow_posters">
         {movies.map((movie) => (
-          <img key={movie.id} className="movierow__poster" src={`${img_base_url}${isLargeRow?movie.poster_path: movie.backdrop_path}`} alt={movie.name} /> 
+          <img key={movie.id} 
+            className={`movierow__poster ${isLargeRow && "movierow__posterLarge"}`} 
+            src={`${img_base_url}${isLargeRow?movie.poster_path: movie.backdrop_path}`} 
+            alt={movie.name} /> 
         ))}
       </div>
     </div>
