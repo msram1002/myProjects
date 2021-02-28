@@ -6,7 +6,7 @@ function Navbar() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 120) {
+      if (window.scrollY > 150) {
         handleShow(true);
       } else handleShow(false);
     })
@@ -19,8 +19,8 @@ function Navbar() {
         alt="netflix logo" />
 
         <img className="navbar__avatar" 
-            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" 
-            alt="netflixavatar"/>
+          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" 
+          alt="netflix avatar"/>
     </div>
   )
 }
