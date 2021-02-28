@@ -2,19 +2,22 @@
   margin-left: 20px;
 }
 
-.movierow_posters {
+.movierow__posters {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
 }
 
-.movierow_posters::-webkit-scrollbar {
+.movierow__posters::-webkit-scrollbar {
   /* Hiding the scroll bar */
   display: none;
 }
-.movierow__poster {
+
+.movierow__posters__posterItem {
   width: 100%;
+  /* the image keeps its aspect ratio, 
+  but is resized to fit within the given dimension */
   object-fit: contain;
   max-height: 100px;
   /* Applying a delay to the transform below, we dont want to just pop up and become bigger */
@@ -22,14 +25,14 @@
   margin-right: 10px;
 }
 
-.movierow__poster:hover {
+.movierow__posters__posterItem:hover {
   transform: scale(1.08);
 }
 
-.movierow__posterLarge {
+.movierow__poster__posterItemLarge {
   max-height: 225px;
 }
 
-.movierow__posterLarge:hover {
+.movierow__poster__posterItemLarge:hover {
   transform: scale(1.09);
 }
