@@ -46,6 +46,8 @@ function Banner() {
           </p>
         </div>
       </div>
+      {/* modifiers can manipulate the block so that we can theme or style that particular component without inflicting changes on a completely unrelated module */}
+      <div className="banner--fadeBottom"></div>
     </header>
   )
 }
