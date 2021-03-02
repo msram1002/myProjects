@@ -27,6 +27,7 @@
 }
 
 .movierow__posters__posterItem:hover {
+  cursor: pointer;
   transform: scale(1.08);
 }
 
@@ -35,5 +36,6 @@
 }
 
 .movierow__poster__posterItemLarge:hover {
+  cursor: pointer;
   transform: scale(1.09);
 }
