@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -90,6 +90,10 @@ class App extends Component {
     }
 
     return (
+      // <StyleRoot>
+      
+      // </StyleRoot>
+
       <div className="App">
         <h1 className={classes.join(' ')}>Hello React!</h1>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Content</button>
@@ -99,7 +103,8 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+// export default Radium(App);
+export default App;
 
 // import React, { useState } from 'react';
 // import './App.css';
