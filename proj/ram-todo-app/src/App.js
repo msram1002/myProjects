@@ -28,7 +28,7 @@ function App() {
       timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
       toDo: todoInput
     });
-    // After adding the data, delete the value from inout field
+    // After adding the data, delete the value from input field
     setTodoInput("");
   };
 
@@ -65,7 +65,7 @@ function App() {
           </Button>
         </form>
         {/* getting list from the listOfTodos */}
-        {/* using parenthesis as map  using {} needs to have a return value */}
+        {/* using parenthesis as map using {} needs to have a return value */}
         {/* {listOfTodos.length? (
             <h3>Here is the list</h3>
           ) : (
