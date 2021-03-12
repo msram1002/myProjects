@@ -1,0 +1,48 @@
+@import '../../../main-styles.scss';
+
+.root {
+  display: flex;
+  width: 100%;
+}
+
+.budget-item {
+  display: flex;
+  width: 100%;
+  background-color: $light-grey;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .desc {
+    flex-grow: 1;
+    font-size: 1.25rem;
+    margin-left: 0.25rem;
+  }
+
+  .amount {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+  }
+}
+
+.income {
+  p {
+    color: $green;
+  }
+
+  .amount {
+    background-color: $light-green;
+  }
+}
+
+.expense {
+  p {
+    color: $red;
+  }
+
+  .amount {
+    background-color: $light-red;
+  }
+}
