@@ -19,3 +19,28 @@
     color: $dark;
   }
 }
+
+.total-budget-section {
+  display: flex;
+  height: 250px;
+  background: $dark;
+
+  // Center the text horizontally and vertically
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: white;
+
+    &.green {
+      color: lighten($green, 12%);
+    }
+
+    &.red {
+      color: lighten($red, 12%);
+    }
+  }
+}
