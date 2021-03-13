@@ -8,6 +8,7 @@ import { AddItemFormComponent } from './add-item-form/add-item-form.component';
 import { BudgetItemListComponent } from './budget-item-list/budget-item-list.component';
 import { BudgetItemCardComponent } from './budget-item-list/budget-item-card/budget-item-card.component';
 import { FormsModule} from '@angular/forms';
+import { DigitOnlyModule } from '@uiowa/digit-only';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    DigitOnlyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

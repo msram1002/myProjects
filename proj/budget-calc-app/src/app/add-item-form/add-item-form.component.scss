@@ -1,0 +1,29 @@
+@import '../../main-styles.scss';
+
+.radioBtns {
+  font-family: 'Lato';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $dark;
+  background: $light-grey;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+
+  .control {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-right: 0.5rem;
+    }
+
+    .radio {
+      margin-bottom: 0.25rem;
+    }
+
+    .radio+.radio {
+      margin-left: 0;
+    }
+  }
+}

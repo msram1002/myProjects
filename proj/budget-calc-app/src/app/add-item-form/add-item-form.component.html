@@ -1,18 +1,33 @@
 <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
   <div class="field is-horizontal">
     <div class="field-body">
+      <div class="field is-narrow radioBtns">
+        <div class="control">
+          <label class="radio">
+            <!-- Value is must for input radio or checkbox type-->
+            <input type="radio" name="answer" [ngModel]="item.type" value="Income" required>
+            Income
+          </label>
+          <label class="radio">
+            <input type="radio" name="answer" [ngModel]="item.type" value="Expense" required>
+            Expense
+          </label>
+        </div>
+      </div>
       <div class="field is-narrow">
         <p class="control">
-          <input required class="input" name="amount" style="width: 100px" type="number" placeholder="Amount" [(ngModel)]="item.amount">
+          <input required class="input" name="amount" digitOnly style="width: 100px" type="text" placeholder="Amount"
+            [ngModel]="item.amount">
         </p>
       </div>
       <div class="field">
         <p class="control">
-          <input required class="input" name="description" type="text" placeholder="Description" [ngModel]="item.description">
+          <input required class="input" name="description" type="text" placeholder="Description"
+            [ngModel]="item.description">
         </p>
       </div>
       <div class="field is-narrow">
-        <button type="submit" class="button is-primary">Add</button>
+        <button type="submit" class="button is-primary" [disabled]="!itemForm.valid">Add</button>
       </div>
     </div>
   </div>
