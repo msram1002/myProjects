@@ -17,5 +17,6 @@ export class MainPageComponent implements OnInit {
 
   addItem(newItem: BudgetItem) {
     this.budgetItems.push(newItem);
+    console.log(this.budgetItems);
   }
 }

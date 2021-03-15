@@ -1,9 +1,9 @@
 export class BudgetItem {
-  type: string
-  description: string;
-  amount: string;
+  type: any;
+  description: any;
+  amount: any;
 
-  constructor(type: string, description: string, amount: string) {
+  constructor(type: any, description: any, amount: any) {
     this.type = type;
     this.description = description;
     this.amount = amount;
