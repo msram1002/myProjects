@@ -8,7 +8,7 @@ import { BudgetItem } from 'src/shared/models/budget-item.model';
 })
 export class BudgetItemListComponent implements OnInit {
 
-  @Input() budgetItems: BudgetItem[]=[];
+  @Input() budgetItems: BudgetItem;
 
   constructor() { }
 

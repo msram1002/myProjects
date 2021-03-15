@@ -6,23 +6,20 @@
   position: relative;
 
   &:hover {
-    .x-icon-button {
+    .close {
       opacity: 1;
       transform: scale(1);
     }
   }
 
-  .x-icon-button {
+  .close {
     position: absolute;
-    height: 1.25rem;
-    width: 1.25rem;
+    height: 1.5rem;
+    width: 1.5rem;
     border-radius: 50%;
     right: -0.75rem;
     background: $dark;
-    top: -0.25rem;
-    background-image: url('../../../assets/delete.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    top: -0.65rem;
     transition: opacity 0.2s ease-out, transform 0.2s ease-in;
     transform: scale(0);
     opacity: 0;
@@ -30,6 +27,26 @@
     &:hover {
       transform: scale(1.2);
     }
+  }
+
+  .close:after {
+    content: '';
+    height: 1.1rem;
+    border-left: 2px solid $red;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 11px;
+    top: 0.2rem;
+  }
+
+  .close:before {
+    content: '';
+    height: 1.1rem;
+    border-left: 2px solid $red;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 11px;
+    top: 0.2rem;
   }
 }
 

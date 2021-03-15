@@ -10,5 +10,5 @@ export class BudgetItem {
   }
 
   // or we can also write it as
-  // constructor(public description: string, public amount: number) {}
+  // constructor(type: any, description: any, amount: any) {}
 }
