@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetItem } from 'src/shared/models/budget-item.model';
+import { UpdatedItem } from '../budget-item-list/budget-item-list.component';
 
 @Component({
   selector: 'app-main-page',
@@ -8,7 +9,7 @@ import { BudgetItem } from 'src/shared/models/budget-item.model';
 })
 export class MainPageComponent implements OnInit {
 
-  budgetItems: BudgetItem[]= new Array<BudgetItem>();
+  budgetItems: BudgetItem[] = new Array<BudgetItem>();
   totalBudget: number = 0;
 
   constructor() { }
@@ -24,6 +25,13 @@ export class MainPageComponent implements OnInit {
   deleteItem(item: BudgetItem) {
     let index = this.budgetItems.indexOf(item);
     this.budgetItems.splice(index, 1);
-    this.totalBudget -= parseInt(item.amount);
+    (item.type === "Income") ? this.totalBudget -= parseInt(item.amount) : this.totalBudget += parseInt(item.amount);
+  }
+
+  updateItem(updatedItem: UpdatedItem) {
+    this.budgetItems[this.budgetItems.indexOf(updatedItem.old)] = updatedItem.new;
+    // Update the total budget value as well
+    (updatedItem.old.type === "Income") ? this.totalBudget -= parseInt(updatedItem.old.amount) : this.totalBudget += parseInt(updatedItem.old.amount);
+    (updatedItem.new.type === "Income") ? this.totalBudget += parseInt(updatedItem.new.amount) : this.totalBudget -= parseInt(updatedItem.new.amount);
   }
 }
