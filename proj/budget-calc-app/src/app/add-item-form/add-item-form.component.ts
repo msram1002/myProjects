@@ -18,6 +18,6 @@ export class AddItemFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    this.formSubmit.emit(form.value);
   }
 }
