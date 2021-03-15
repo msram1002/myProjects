@@ -9,15 +9,20 @@ import { BudgetItem } from 'src/shared/models/budget-item.model';
 export class BudgetItemCardComponent implements OnInit {
 
   @Input() item: BudgetItem;
-  @Output() closeBtnClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteBtnClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() cardClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onCloseBtnClick() {
-    this.closeBtnClick.emit();
+  onDeleteBtnClick() {
+    this.deleteBtnClick.emit();
+  }
+
+  onCardClick() {
+    this.cardClick.emit();
   }
 
 }

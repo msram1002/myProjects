@@ -6,13 +6,13 @@
   position: relative;
 
   &:hover {
-    .close {
-      opacity: 1;
+    .delete-icon {
       transform: scale(1);
+      opacity: 1;
     }
   }
 
-  .close {
+  .delete-icon {
     position: absolute;
     height: 1.5rem;
     width: 1.5rem;
@@ -29,7 +29,7 @@
     }
   }
 
-  .close:after {
+  .delete-icon:after {
     content: '';
     height: 1.1rem;
     border-left: 2px solid $red;
@@ -39,7 +39,7 @@
     top: 0.2rem;
   }
 
-  .close:before {
+  .delete-icon:before {
     content: '';
     height: 1.1rem;
     border-left: 2px solid $red;

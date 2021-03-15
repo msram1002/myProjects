@@ -7,9 +7,10 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AddItemFormComponent } from './add-item-form/add-item-form.component';
 import { BudgetItemListComponent } from './budget-item-list/budget-item-list.component';
 import { BudgetItemCardComponent } from './budget-item-list/budget-item-card/budget-item-card.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { EditItemModalComponent } from './edit-item-modal/edit-item-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,11 @@ import { EditItemModalComponent } from './edit-item-modal/edit-item-modal.compon
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     FormsModule,
     DigitOnlyModule
   ],
+  entryComponents: [EditItemModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

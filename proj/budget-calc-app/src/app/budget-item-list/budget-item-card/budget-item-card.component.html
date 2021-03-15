@@ -1,11 +1,12 @@
 <div class="root">
-  <div class="budget-item" [ngClass]="{'income': item.type==='Income', 'expenses': item.type==='Expenses'}">
+  <div class="budget-item" (click)="onCardClick()" [ngClass]="{'income': item.type==='Income', 'expenses': item.type==='Expenses'}">
     <div class="desc">
       <p>{{item.description}}</p>
     </div>
     <div class="amount">
       <p>{{item.amount}}</p>
     </div>
-    <div class="close" (click)="onCloseBtnClick()"></div>
+    <div class="delete-icon" (click)="onDeleteBtnClick()">
+    </div>
   </div>
 </div>
