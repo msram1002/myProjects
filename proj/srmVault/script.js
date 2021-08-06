@@ -120,6 +120,7 @@ computeUserName(accounts);
 // labelBalance.textContent = `$ ${remBal}`;
 
 const balanceSummary = function (movements){
+  // Calculating sum of deposits
   const incomeSummary = movements
     .filter(function(mov) {
       return mov > 0;
@@ -129,13 +130,24 @@ const balanceSummary = function (movements){
   
   labelSumIn.textContent = `$ ${incomeSummary}`;
   
+  // Calculating sum of expenditures
   const expendituresSummary = movements
   .filter(mov => mov < 0)
   .reduce((acc, cur) => acc + cur, 0);
-
+  
   labelSumOut.textContent = `$ ${Math.abs(expendituresSummary)}`;
 
-  labelBalance.textContent = `$ ${incomeSummary + expendituresSummary}`;
+  // Calculating interest on deposits
+  // 1% interest on deposits
+  const interestSummary = movements
+    .filter(mov => mov > 0)
+    .map(newDeposit => newDeposit * (0.01))
+    .reduce((acc, cur) => acc + cur, 0);
+  
+  labelSumInterest.textContent = `$ ${interestSummary}`;
+
+  // Calculating the final account balance
+  labelBalance.textContent = `$ ${incomeSummary + interestSummary - Math.abs(expendituresSummary) }`;
 };
 
 balanceSummary(account2.movements);
