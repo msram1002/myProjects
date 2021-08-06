@@ -82,3 +82,16 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+// Computing user names - initials of account owner
+const computeUserName = function (accs){
+accs.forEach(function(acc) {
+  acc.userName = acc.owner
+    .toLowerCase()
+    .split(" ")
+    .map((name)=>name[0])
+    .join("");
+})
+};
+
+computeUserName(accounts);
