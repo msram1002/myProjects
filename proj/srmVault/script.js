@@ -97,24 +97,45 @@ const computeUserName = function (accs){
 computeUserName(accounts);
 
 // Seperating out deposits and summing them
-const accDeposits = account2.movements
-  .filter(function(mov) {
-  return mov > 0;
-  }).reduce(function(acc, cur) {
-  return acc + cur;
-  }, 0);
+// const accDeposits = account2.movements
+//   .filter(function(mov) {
+//   return mov > 0;
+//   }).reduce(function(acc, cur) {
+//   return acc + cur;
+//   }, 0);
 
-labelSumIn.textContent = `$ ${accDeposits}`;
+// labelSumIn.textContent = `$ ${accDeposits}`;
 
 // Seperating out withdrawals and summing them 
 // using arrow function this time
-const accWithDrawals = account2.movements
+// const accWithDrawals = account2.movements
+//   .filter(mov => mov < 0)
+//   .reduce((acc, cur) => acc + cur, 0);
+
+// labelSumOut.textContent = `$ ${-(accWithDrawals)}`;
+
+// accWithDrawals are already negative
+// const remBal = accDeposits + accWithDrawals;
+
+// labelBalance.textContent = `$ ${remBal}`;
+
+const balanceSummary = function (movements){
+  const incomeSummary = movements
+    .filter(function(mov) {
+      return mov > 0;
+    }).reduce(function(acc, cur) {
+      return acc + cur;
+    }, 0);
+  
+  labelSumIn.textContent = `$ ${incomeSummary}`;
+  
+  const expendituresSummary = movements
   .filter(mov => mov < 0)
   .reduce((acc, cur) => acc + cur, 0);
 
-labelSumOut.textContent = `$ ${-(accWithDrawals)}`;
+  labelSumOut.textContent = `$ ${Math.abs(expendituresSummary)}`;
 
-// accWithDrawals are already negative
-const remBal = accDeposits + accWithDrawals;
+  labelBalance.textContent = `$ ${incomeSummary + expendituresSummary}`;
+};
 
-labelBalance.textContent = `$ ${remBal}`;
+balanceSummary(account2.movements);
