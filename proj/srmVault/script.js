@@ -81,17 +81,40 @@ const displayMovements = function (movements) {
   })
 };
 
-displayMovements(account1.movements);
+displayMovements(account2.movements);
 
 // Computing user names - initials of account owner
 const computeUserName = function (accs){
-accs.forEach(function(acc) {
-  acc.userName = acc.owner
-    .toLowerCase()
-    .split(" ")
-    .map((name)=>name[0])
-    .join("");
-})
+  accs.forEach(function(acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name)=>name[0])
+      .join("");
+  })
 };
 
 computeUserName(accounts);
+
+// Seperating out deposits and summing them
+const accDeposits = account2.movements
+  .filter(function(mov) {
+  return mov > 0;
+  }).reduce(function(acc, cur) {
+  return acc + cur;
+  }, 0);
+
+labelSumIn.textContent = `$ ${accDeposits}`;
+
+// Seperating out withdrawals and summing them 
+// using arrow function this time
+const accWithDrawals = account2.movements
+  .filter(mov => mov < 0)
+  .reduce((acc, cur) => acc + cur, 0);
+
+labelSumOut.textContent = `$ ${-(accWithDrawals)}`;
+
+// accWithDrawals are already negative
+const remBal = accDeposits + accWithDrawals;
+
+labelBalance.textContent = `$ ${remBal}`;
