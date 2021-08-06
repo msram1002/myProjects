@@ -63,3 +63,22 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
+
+// Adding the movements for the money for a single person
+// Passing in the movements array from the object
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function(mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const movementHtml = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${i + 1} ${type.toUpperCase()}</div>
+        <div class="movements__date">3 days ago</div>
+        <div class="movements__value">$ ${mov}</div>
+      </div>
+    `;
+    containerMovements.insertAdjacentHTML("afterbegin", movementHtml);
+  })
+};
+
+displayMovements(account1.movements);
