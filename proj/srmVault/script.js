@@ -151,3 +151,37 @@ const balanceSummary = function (movements){
 };
 
 balanceSummary(account2.movements);
+
+// Login implementation
+
+// Variable for storing the username
+// We have transfer implementation so need this to be 
+// outside of btnLogin function.
+let currentAcc;
+
+// Event handler for login button and enter key
+// Enter key - automatically triggers the click when
+// we have a form based html
+btnLogin.addEventListener('click', function (e) {
+  // Button on a form element does a page reload
+  // Prevent form from submitting
+  e.preventDefault();
+  // Verify if it is existing user from the entered user value
+  currentAcc = accounts.find(acc => acc.userName === 
+    inputLoginUsername.value);
+  // Check the pin for the user trying to login
+  // We need to verify only if currentAcc is actually valid
+  // For non-existing users, it returns undefined
+  // and undefined.pin gives us an error, 
+  // so we can use optional chaining
+  if (currentAcc?.pin === 
+    Number(inputLoginPin.value)){
+    // if user exists, provide a welcome message 
+    // to the user and display their balance summary
+
+    // change the opacity to display the dashboard
+    containerApp.style.opacity = 100;
+    // Welcome message with their first word in their name
+    labelWelcome.textContent = `Welcome back! ${currentAcc.owner.split(" ")[0]}`;
+  }
+});
