@@ -174,10 +174,11 @@ btnLogin.addEventListener('click', function (e) {
     Number(inputLoginPin.value)){
     // if user exists, provide a welcome message 
     // to the user and display their balance summary
-    
 
     // clearing the input fields
     inputLoginUsername.value = inputLoginPin.value = '';
+    // removing the focus from pin field
+    inputLoginPin.blur();
     // change the opacity to display the dashboard
     containerApp.style.opacity = 100;
     // Welcome message with their first word in their name
