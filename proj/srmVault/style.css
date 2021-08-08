@@ -20,7 +20,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .error {
@@ -33,7 +33,7 @@ nav {
 }
 
 .welcome {
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 500;
 }
 
