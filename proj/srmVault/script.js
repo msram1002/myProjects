@@ -6,14 +6,14 @@
 
 // Data
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'John Doe',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Mark Anthony',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
@@ -27,7 +27,7 @@ const account3 = {
 };
 
 const account4 = {
-  owner: 'Sarah Smith',
+  owner: 'Kevin Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -37,6 +37,7 @@ const accounts = [account1, account2, account3, account4];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
+const labelError = document.querySelector('.error');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
 const labelSumIn = document.querySelector('.summary__value--in');
@@ -174,7 +175,8 @@ btnLogin.addEventListener('click', function (e) {
     Number(inputLoginPin.value)){
     // if user exists, provide a welcome message 
     // to the user and display their balance summary
-
+    // Removing the error message
+    labelError.style.display = "none";
     // clearing the input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     // removing the focus from pin field
@@ -186,5 +188,16 @@ btnLogin.addEventListener('click', function (e) {
     // loading the dashboard for the logged in user
     displayMovements(currentAcc.movements);
     balanceSummary(currentAcc);
+  } else {
+    // for non-existing users
+    
+    // clearing the input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    // removing the focus from pin field
+    inputLoginPin.blur();
+    // change the opacity to hide
+    containerApp.style.opacity = 0;
+    // 
+    labelError.style.display = "block";
   }
 });
