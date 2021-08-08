@@ -145,7 +145,7 @@ const balanceSummary = function (account){
   labelSumInterest.textContent = `$ ${interestSummary}`;
 
   // Calculating the final account balance
-  labelBalance.textContent = `$ ${incomeSummary + interestSummary - Math.abs(expendituresSummary) }`;
+  labelBalance.textContent = `$ ${(incomeSummary + interestSummary - Math.abs(expendituresSummary)).toFixed(2) }`;
 };
 
 // Login implementation
