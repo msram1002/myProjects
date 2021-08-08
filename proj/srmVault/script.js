@@ -7,28 +7,28 @@
 // Data
 const account1 = {
   owner: 'John Doe',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  movements: [200, -100, 3000, -1500, -200, 70],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
   owner: 'Mark Anthony',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  movements: [5000, 3000, -1500, -500, -3000, 1000],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
   owner: 'Steven Thomas Williams',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  movements: [2000, -500, 300, 500, -200, 100],
   interestRate: 0.7,
   pin: 3333,
 };
 
 const account4 = {
   owner: 'Kevin Smith',
-  movements: [430, 1000, 700, 50, 90],
+  movements: [400, 1000, 500, 100, 900],
   interestRate: 1,
   pin: 4444,
 };
@@ -125,35 +125,38 @@ const balanceSummary = function (account){
       return mov > 0;
     }).reduce(function(acc, cur) {
       return acc + cur;
-    }, 0);
+    }, 0).toFixed(2);
   
   labelSumIn.textContent = `$ ${incomeSummary}`;
   
   // Calculating sum of expenditures
-  const expendituresSummary = account.movements
+  const expendituresSummary = Math.abs(account.movements
   .filter(mov => mov < 0)
-  .reduce((acc, cur) => acc + cur, 0);
+  .reduce((acc, cur) => acc + cur, 0)).toFixed(2);
   
-  labelSumOut.textContent = `$ ${Math.abs(expendituresSummary)}`;
+  labelSumOut.textContent = `$ ${expendituresSummary}`;
 
   // Calculating interest on deposits
-  // 1% interest on deposits
   const interestSummary = account.movements
     .filter(mov => mov > 0)
     .map(newDeposit => newDeposit *(account.interestRate/100))
-    .reduce((acc, cur) => acc + cur, 0);
+    .reduce((acc, cur) => acc + cur, 0).toFixed(2);
   
   labelSumInterest.textContent = `$ ${interestSummary}`;
 
   // Calculating the final account balance
-  labelBalance.textContent = `$ ${(incomeSummary + interestSummary - Math.abs(expendituresSummary)).toFixed(2) }`;
+  const finalBal = Number(incomeSummary) + Number(interestSummary) - Number(expendituresSummary);
+  // Storing as an property on the account object 
+  // as we shall need when implementing transfers
+  account.finalBalance = finalBal.toFixed(2);
+  labelBalance.textContent = `$ ${account.finalBalance}`;
 };
 
 // Login implementation
 
 // Variable for storing the username
-// We have transfer implementation so need this to be 
-// outside of btnLogin function.
+// We have transfer implementation so need 
+// this to be outside of btnLogin function.
 let currentAcc;
 
 // Event handler for login button and enter key
@@ -190,14 +193,38 @@ btnLogin.addEventListener('click', function (e) {
     balanceSummary(currentAcc);
   } else {
     // for non-existing users
-    
     // clearing the input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     // removing the focus from pin field
     inputLoginPin.blur();
     // change the opacity to hide
     containerApp.style.opacity = 0;
-    // 
+    // unhide the error message
     labelError.style.display = "block";
+  }
+});
+
+// Implementing transfers
+
+btnTransfer.addEventListener('click', function(e) {
+  e.preventDefault();
+  // Getting the receiver account and amount
+  const amountToBeTransferred = Number(inputTransferAmount.value);
+  // Need to find the account so that we can move the 
+  // amount to their movements array
+  const recAcc = accounts.find(acc => acc.userName === inputTransferTo.value);
+  // Before we actually transfer, we need to check if sender has the required amount or not
+  // if sender is from the existing list or undefined
+  if (amountToBeTransferred > 0 && amountToBeTransferred <= currentAcc.finalBalance && recAcc && recAcc?.userName !== currentAcc.userName) {
+    console.log("Yes");
+    // Add a negative amount to sender
+    // Add a positive amount to the receiver
+    currentAcc.movements.push(-(amountToBeTransferred));
+    recAcc.movements.push(amountToBeTransferred);
+    // Dashboard needs to be updated
+    displayMovements(currentAcc.movements);
+    balanceSummary(currentAcc);
+  } else {
+    console.log("no");
   }
 });
