@@ -117,9 +117,9 @@ computeUserName(accounts);
 
 // labelBalance.textContent = `$ ${remBal}`;
 
-const balanceSummary = function (movements){
+const balanceSummary = function (account){
   // Calculating sum of deposits
-  const incomeSummary = movements
+  const incomeSummary = account.movements
     .filter(function(mov) {
       return mov > 0;
     }).reduce(function(acc, cur) {
@@ -129,7 +129,7 @@ const balanceSummary = function (movements){
   labelSumIn.textContent = `$ ${incomeSummary}`;
   
   // Calculating sum of expenditures
-  const expendituresSummary = movements
+  const expendituresSummary = account.movements
   .filter(mov => mov < 0)
   .reduce((acc, cur) => acc + cur, 0);
   
@@ -137,9 +137,9 @@ const balanceSummary = function (movements){
 
   // Calculating interest on deposits
   // 1% interest on deposits
-  const interestSummary = movements
+  const interestSummary = account.movements
     .filter(mov => mov > 0)
-    .map(newDeposit => newDeposit * (0.01))
+    .map(newDeposit => newDeposit *(account.interestRate/100))
     .reduce((acc, cur) => acc + cur, 0);
   
   labelSumInterest.textContent = `$ ${interestSummary}`;
@@ -185,6 +185,6 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back! ${currentAcc.owner.split(" ")[0]}`;
     // loading the dashboard for the logged in user
     displayMovements(currentAcc.movements);
-    balanceSummary(currentAcc.movements);
+    balanceSummary(currentAcc);
   }
 });
