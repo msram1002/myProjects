@@ -81,8 +81,6 @@ const displayMovements = function (movements) {
   })
 };
 
-displayMovements(account2.movements);
-
 // Computing user names - initials of account owner
 const computeUserName = function (accs){
   accs.forEach(function(acc) {
@@ -150,8 +148,6 @@ const balanceSummary = function (movements){
   labelBalance.textContent = `$ ${incomeSummary + interestSummary - Math.abs(expendituresSummary) }`;
 };
 
-balanceSummary(account2.movements);
-
 // Login implementation
 
 // Variable for storing the username
@@ -178,10 +174,13 @@ btnLogin.addEventListener('click', function (e) {
     Number(inputLoginPin.value)){
     // if user exists, provide a welcome message 
     // to the user and display their balance summary
-
+    
     // change the opacity to display the dashboard
     containerApp.style.opacity = 100;
     // Welcome message with their first word in their name
     labelWelcome.textContent = `Welcome back! ${currentAcc.owner.split(" ")[0]}`;
+    // loading the dashboard for the logged in user
+    displayMovements(currentAcc.movements);
+    balanceSummary(currentAcc.movements);
   }
 });
