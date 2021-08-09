@@ -213,10 +213,12 @@ btnTransfer.addEventListener('click', function(e) {
   // Need to find the account so that we can move the 
   // amount to their movements array
   const recAcc = accounts.find(acc => acc.userName === inputTransferTo.value);
+  // clearing out the transfer user and input values
+  inputTransferTo.value = inputTransferAmount.value = '';
+  inputTransferAmount.blur();
   // Before we actually transfer, we need to check if sender has the required amount or not
   // if sender is from the existing list or undefined
   if (amountToBeTransferred > 0 && amountToBeTransferred <= currentAcc.finalBalance && recAcc && recAcc?.userName !== currentAcc.userName) {
-    console.log("Yes");
     // Add a negative amount to sender
     // Add a positive amount to the receiver
     currentAcc.movements.push(-(amountToBeTransferred));
