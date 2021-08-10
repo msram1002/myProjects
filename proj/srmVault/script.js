@@ -69,7 +69,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 // Passing in the movements array from the object
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
-  movements.forEach(function(mov, i) {
+  movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const movementHtml = `
       <div class="movements__row">
@@ -83,12 +83,12 @@ const displayMovements = function (movements) {
 };
 
 // Computing user names - initials of account owner
-const computeUserName = function (accs){
-  accs.forEach(function(acc) {
+const computeUserName = function (accs) {
+  accs.forEach(function (acc) {
     acc.userName = acc.owner
       .toLowerCase()
       .split(" ")
-      .map((name)=>name[0])
+      .map((name) => name[0])
       .join("");
   })
 };
@@ -118,30 +118,30 @@ computeUserName(accounts);
 
 // labelBalance.textContent = `$ ${remBal}`;
 
-const balanceSummary = function (account){
+const balanceSummary = function (account) {
   // Calculating sum of deposits
   const incomeSummary = account.movements
-    .filter(function(mov) {
+    .filter(function (mov) {
       return mov > 0;
-    }).reduce(function(acc, cur) {
+    }).reduce(function (acc, cur) {
       return acc + cur;
     }, 0).toFixed(2);
-  
+
   labelSumIn.textContent = `$ ${incomeSummary}`;
-  
+
   // Calculating sum of expenditures
   const expendituresSummary = Math.abs(account.movements
-  .filter(mov => mov < 0)
-  .reduce((acc, cur) => acc + cur, 0)).toFixed(2);
-  
+    .filter(mov => mov < 0)
+    .reduce((acc, cur) => acc + cur, 0)).toFixed(2);
+
   labelSumOut.textContent = `$ ${expendituresSummary}`;
 
   // Calculating interest on deposits
   const interestSummary = account.movements
     .filter(mov => mov > 0)
-    .map(newDeposit => newDeposit *(account.interestRate/100))
+    .map(newDeposit => newDeposit * (account.interestRate / 100))
     .reduce((acc, cur) => acc + cur, 0).toFixed(2);
-  
+
   labelSumInterest.textContent = `$ ${interestSummary}`;
 
   // Calculating the final account balance
@@ -155,8 +155,8 @@ const balanceSummary = function (account){
 // Login implementation
 
 // Variable for storing the username
-// We have transfer implementation so need 
-// this to be outside of btnLogin function.
+// We have other implementations like transfer/ close 
+// so needs to be outside of btnLogin function.
 let currentAcc;
 
 // Event handler for login button and enter key
@@ -167,15 +167,14 @@ btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
   // Verify if it is existing user from the entered user value
-  currentAcc = accounts.find(acc => acc.userName === 
+  currentAcc = accounts.find(acc => acc.userName ===
     inputLoginUsername.value);
   // Check the pin for the user trying to login
   // We need to verify only if currentAcc is actually valid
   // For non-existing users, it returns undefined
   // and undefined.pin gives us an error, 
   // so we can use optional chaining
-  if (currentAcc?.pin === 
-    Number(inputLoginPin.value)){
+  if (currentAcc?.pin === Number(inputLoginPin.value)) {
     // if user exists, provide a welcome message 
     // to the user and display their balance summary
     // Removing the error message
@@ -206,7 +205,7 @@ btnLogin.addEventListener('click', function (e) {
 
 // Implementing transfers
 
-btnTransfer.addEventListener('click', function(e) {
+btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   // Getting the receiver account and amount
   const amountToBeTransferred = Number(inputTransferAmount.value);
@@ -229,4 +228,20 @@ btnTransfer.addEventListener('click', function(e) {
   } else {
     console.log("no");
   }
+});
+
+// Implementing close of account
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault(); 
+  if (inputCloseUsername.userName === currentAcc.userName &&
+    Number(inputClosePin.value) === currentAcc.pin) {
+    const arrIndex = accounts.findIndex(acc => acc.userName === closeUserName);
+    // splice mutates the original array
+    accounts.splice(arrIndex, 1);
+    // change the opacity to hide the dashboard
+    containerApp.style.opacity = 0;
+  }
+  // clearing out the input values
+  inputCloseUsername.value = inputClosePin.value = '';
 });
