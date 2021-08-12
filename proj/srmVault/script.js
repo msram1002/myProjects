@@ -268,7 +268,7 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.blur();
 });
 
-// Variable for sorting
+// Variable for maintaing sorting state
 let sortedState = false;
 // Sorting arrays, we add an extra parameter
 // in displayMovements to check and apply the sort
