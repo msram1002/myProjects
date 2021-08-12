@@ -67,9 +67,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // Adding the movements for the money for a single person
 // Passing in the movements array from the object
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  // sort
+  const sortedMovs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  sortedMovs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const movementHtml = `
       <div class="movements__row">
@@ -262,4 +266,14 @@ btnLoan.addEventListener('click', function (e) {
   // clearing out the input values
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
+});
+
+// Variable for sorting
+let sortedState = false;
+// Sorting arrays, we add an extra parameter
+// in displayMovements to check and apply the sort
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAcc.movements, !sortedState);
+  sortedState = !sortedState;
 });
