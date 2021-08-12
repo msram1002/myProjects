@@ -233,7 +233,7 @@ btnTransfer.addEventListener('click', function (e) {
 // Implementing close of account
 
 btnClose.addEventListener('click', function (e) {
-  e.preventDefault(); 
+  e.preventDefault();
   if (inputCloseUsername.userName === currentAcc.userName &&
     Number(inputClosePin.value) === currentAcc.pin) {
     const arrIndex = accounts.findIndex(acc => acc.userName === closeUserName);
@@ -244,4 +244,22 @@ btnClose.addEventListener('click', function (e) {
   }
   // clearing out the input values
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+// Request for loan
+// Loan gets approved only if we have any deposits
+// greater than or equal to 10% of the loan amount requested
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const loanReqAmount = Number(inputLoanAmount.value);
+  if (loanReqAmount > 0 && currentAcc.movements.some(mov => mov >= (loanReqAmount * 0.1))) {
+    currentAcc.movements.push(loanReqAmount);
+    // Dashboard needs to be updated
+    displayMovements(currentAcc.movements);
+    balanceSummary(currentAcc);
+  }
+  // clearing out the input values
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
 });
