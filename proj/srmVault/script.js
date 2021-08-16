@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// SRM VAULT APP
+// SRM BANK APP
 
 // Data
 const account1 = {
@@ -156,7 +156,10 @@ const balanceSummary = function (account) {
   labelBalance.textContent = `$ ${account.finalBalance}`;
 };
 
-// Login implementation
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+// Implementing account login
 
 // Variable for storing the username
 // We have other implementations like transfer/ close 
@@ -207,6 +210,9 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
 // Implementing transfers
 
 btnTransfer.addEventListener('click', function (e) {
@@ -234,7 +240,10 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
-// Implementing close of account
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+// Implementing close of an account
 
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -250,7 +259,10 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-// Request for loan
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+// Implementing requests for loan
 // Loan gets approved only if we have any deposits
 // greater than or equal to 10% of the loan amount requested
 
@@ -268,7 +280,7 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.blur();
 });
 
-// Variable for maintaing sorting state
+// Variable for maintaing the sorting state
 let sortedState = false;
 // Sorting arrays, we add an extra parameter
 // in displayMovements to check and apply the sort
