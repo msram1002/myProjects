@@ -268,7 +268,7 @@ btnClose.addEventListener('click', function (e) {
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const loanReqAmount = Number(inputLoanAmount.value);
+  const loanReqAmount = Math.round(Number(inputLoanAmount.value));
   if (loanReqAmount > 0 && currentAcc.movements.some(mov => mov >= (loanReqAmount * 0.1))) {
     currentAcc.movements.push(loanReqAmount);
     // Dashboard needs to be updated
