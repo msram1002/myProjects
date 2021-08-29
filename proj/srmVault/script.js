@@ -98,18 +98,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // Adding the movements for the money for a single person
 // Passing in the movements array from the object
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (currentAccount, sort = false) {
   containerMovements.innerHTML = '';
 
   // sort
-  const sortedMovs = sort ? movements.slice().sort((a, b) => a - b) : movements;
-
+  const sortedMovs = sort ? currentAccount.movements.slice().sort((a, b) => a - b) : currentAccount.movements;
   sortedMovs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+    // Formatting and display dates
+    const date = new Date(currentAccount.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2,0);
+    const month = `${date.getMonth() + 1}`.padStart(2,0);
+    const fullYear = date.getFullYear();
+    const displayDate = `${month}/${day}/${fullYear}`;
     const movementHtml = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type.toUpperCase()}</div>
-        <div class="movements__date">3 days ago</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">$ ${mov}</div>
       </div>
     `;
@@ -197,7 +202,7 @@ const balanceSummary = function (account) {
 // so needs to be outside of btnLogin function.
 let currentAcc;
 
-// Adding the Date when they log in
+// Displaying the Date as they logged in
 const now = new Date();
 const day = `${now.getDate()}`.padStart(2,0);
 const month = `${now.getMonth() + 1}`.padStart(2,0);
@@ -235,7 +240,7 @@ btnLogin.addEventListener('click', function (e) {
     // Welcome message with their first word in their name
     labelWelcome.textContent = `Welcome back! ${currentAcc.owner.split(" ")[0]}`;
     // loading the dashboard for the logged in user
-    displayMovements(currentAcc.movements);
+    displayMovements(currentAcc);
     balanceSummary(currentAcc);
   } else {
     // for non-existing users
@@ -273,7 +278,7 @@ btnTransfer.addEventListener('click', function (e) {
     currentAcc.movements.push(-(amountToBeTransferred));
     recAcc.movements.push(amountToBeTransferred);
     // Dashboard needs to be updated
-    displayMovements(currentAcc.movements);
+    displayMovements(currentAcc);
     balanceSummary(currentAcc);
   } else {
     console.log("no");
@@ -312,7 +317,7 @@ btnLoan.addEventListener('click', function (e) {
   if (loanReqAmount > 0 && currentAcc.movements.some(mov => mov >= (loanReqAmount * 0.1))) {
     currentAcc.movements.push(loanReqAmount);
     // Dashboard needs to be updated
-    displayMovements(currentAcc.movements);
+    displayMovements(currentAcc);
     balanceSummary(currentAcc);
   }
   // clearing out the input values
@@ -326,6 +331,6 @@ let sortedState = false;
 // in displayMovements to check and apply the sort
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAcc.movements, !sortedState);
+  displayMovements(currentAcc, !sortedState);
   sortedState = !sortedState;
 });
