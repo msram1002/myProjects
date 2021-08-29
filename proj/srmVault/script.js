@@ -277,6 +277,9 @@ btnTransfer.addEventListener('click', function (e) {
     // Add a positive amount to the receiver
     currentAcc.movements.push(-(amountToBeTransferred));
     recAcc.movements.push(amountToBeTransferred);
+    // Add date when amount was transferred
+    currentAcc.movementsDates.push(new Date().toISOString());
+    recAcc.movementsDates.push(new Date().toISOString());
     // Dashboard needs to be updated
     displayMovements(currentAcc);
     balanceSummary(currentAcc);
@@ -316,6 +319,8 @@ btnLoan.addEventListener('click', function (e) {
   const loanReqAmount = Math.round(Number(inputLoanAmount.value));
   if (loanReqAmount > 0 && currentAcc.movements.some(mov => mov >= (loanReqAmount * 0.1))) {
     currentAcc.movements.push(loanReqAmount);
+     // Add date when a loan amount is requested
+    currentAcc.movementsDates.push(new Date().toISOString());
     // Dashboard needs to be updated
     displayMovements(currentAcc);
     balanceSummary(currentAcc);
