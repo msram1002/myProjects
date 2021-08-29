@@ -207,8 +207,8 @@ const now = new Date();
 const day = `${now.getDate()}`.padStart(2,0);
 const month = `${now.getMonth() + 1}`.padStart(2,0);
 const fullYear = now.getFullYear();
-const hour = now.getHours();
-const minutes = now.getMinutes();
+const hour = `${now.getHours()}`.padStart(2, 0);
+const minutes = `${now.getMinutes()}`.padStart(2, 0);
 labelDate.textContent = `${month}/${day}/${fullYear}, ${hour}:${minutes}`;
 
 // Event handler for login button and enter key
