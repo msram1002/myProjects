@@ -10,6 +10,14 @@ const account1 = {
   movements: [200, -100, 3000, -1500, -200, 70],
   interestRate: 1.2, // %
   pin: 1111,
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2019-12-23T07:42:02.383Z',
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-08T14:11:59.604Z',
+    '2020-05-27T17:01:17.194Z'
+  ],
 };
 
 const account2 = {
@@ -17,6 +25,14 @@ const account2 = {
   movements: [5000, 3000, -1500, -500, -3000, 1000],
   interestRate: 1.5,
   pin: 2222,
+  movementsDates: [
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-08T14:11:59.604Z',
+    '2020-05-27T17:01:17.194Z',
+    '2020-07-11T23:36:17.929Z',
+    '2020-07-12T10:51:36.790Z',
+  ],
 };
 
 const account3 = {
@@ -24,6 +40,14 @@ const account3 = {
   movements: [2000, -500, 300, 500, -200, 100],
   interestRate: 0.7,
   pin: 3333,
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-08T14:11:59.604Z',
+    '2020-05-27T17:01:17.194Z',
+    '2020-07-11T23:36:17.929Z',
+  ],
 };
 
 const account4 = {
@@ -31,6 +55,13 @@ const account4 = {
   movements: [400, 1000, 500, 100, 900],
   interestRate: 1,
   pin: 4444,
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-27T17:01:17.194Z',
+    '2020-07-11T23:36:17.929Z',
+    '2020-07-12T10:51:36.790Z',
+  ],
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -165,6 +196,15 @@ const balanceSummary = function (account) {
 // We have other implementations like transfer/ close 
 // so needs to be outside of btnLogin function.
 let currentAcc;
+
+// Adding the Date when they log in
+const now = new Date();
+const day = now.getDate();
+const month = now.getMonth() + 1;
+const fullYear = now.getFullYear();
+const hour = now.getHours();
+const minutes = now.getMinutes();
+labelDate.textContent = `${month}/${day}/${fullYear}, ${hour}:${minutes}`;
 
 // Event handler for login button and enter key
 // Enter key - automatically triggers the click when
