@@ -31,7 +31,7 @@ const account2 = {
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
     '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2021-08-29T23:51:36.790Z',
   ],
 };
 
@@ -60,7 +60,7 @@ const account4 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-27T17:01:17.194Z',
     '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2021-08-27T10:51:36.790Z',
   ],
 };
 
@@ -96,6 +96,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
+// Not to display simple date format mm/dd/yyyy
+const formatMovementDate = function (date) {
+  const calcDaysPassed = (date1, date2) => 
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+  if (daysPassed === 0) return 'today';
+  if (daysPassed === 1) return 'yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2,0);
+    const month = `${date.getMonth() + 1}`.padStart(2,0);
+    const fullYear = date.getFullYear();
+    return `${month}/${day}/${fullYear}`;
+  }
+};
+
 // Adding the movements for the money for a single person
 // Passing in the movements array from the object
 const displayMovements = function (currentAccount, sort = false) {
@@ -107,10 +125,7 @@ const displayMovements = function (currentAccount, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     // Formatting and display dates
     const date = new Date(currentAccount.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2,0);
-    const month = `${date.getMonth() + 1}`.padStart(2,0);
-    const fullYear = date.getFullYear();
-    const displayDate = `${month}/${day}/${fullYear}`;
+    const displayDate = formatMovementDate(date);
     const movementHtml = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type.toUpperCase()}</div>
