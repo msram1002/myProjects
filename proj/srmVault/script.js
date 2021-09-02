@@ -18,6 +18,9 @@ const account1 = {
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z'
   ],
+  // US Dollar
+  currency: 'USD',
+  locale: 'en-US'
 };
 
 const account2 = {
@@ -33,6 +36,9 @@ const account2 = {
     '2020-07-11T23:36:17.929Z',
     '2021-08-29T23:51:36.790Z',
   ],
+  // Great Britian Pound
+  currency: 'GBP',
+  locale: 'en-GB'
 };
 
 const account3 = {
@@ -48,6 +54,9 @@ const account3 = {
     '2020-05-27T17:01:17.194Z',
     '2020-07-11T23:36:17.929Z',
   ],
+  // Japanese Yen
+  currency: 'JPY',
+  locale: 'ja-jp'
 };
 
 const account4 = {
@@ -62,6 +71,9 @@ const account4 = {
     '2020-07-11T23:36:17.929Z',
     '2021-08-27T10:51:36.790Z',
   ],
+  // Australia Dollar
+  currency: 'AUD',
+  locale: 'en-AU'
 };
 
 const accounts = [account1, account2, account3, account4];
