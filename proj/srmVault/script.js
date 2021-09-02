@@ -71,9 +71,9 @@ const account4 = {
     '2020-07-11T23:36:17.929Z',
     '2021-08-27T10:51:36.790Z',
   ],
-  // Australia Dollar
-  currency: 'AUD',
-  locale: 'en-AU'
+  // Germany Euros
+  currency: 'EUR',
+  locale: 'de-DE'
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -114,7 +114,6 @@ const formatMovementDate = function (date) {
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
   if (daysPassed === 0) return 'today';
   if (daysPassed === 1) return 'yesterday';
   if (daysPassed <= 7) return `${daysPassed} days ago`;
@@ -231,12 +230,23 @@ let currentAcc;
 
 // Displaying the Date as they logged in
 const now = new Date();
-const day = `${now.getDate()}`.padStart(2,0);
-const month = `${now.getMonth() + 1}`.padStart(2,0);
-const fullYear = now.getFullYear();
-const hour = `${now.getHours()}`.padStart(2, 0);
-const minutes = `${now.getMinutes()}`.padStart(2, 0);
-labelDate.textContent = `${month}/${day}/${fullYear}, ${hour}:${minutes}`;
+// const day = `${now.getDate()}`.padStart(2,0);
+// const month = `${now.getMonth() + 1}`.padStart(2,0);
+// const fullYear = now.getFullYear();
+// const hour = `${now.getHours()}`.padStart(2, 0);
+// const minutes = `${now.getMinutes()}`.padStart(2, 0);
+// labelDate.textContent = `${month}/${day}/${fullYear}, ${hour}:${minutes}`;
+
+// List of options
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  weekday: 'long'
+};
+
 
 // Event handler for login button and enter key
 // Enter key - automatically triggers the click when
@@ -266,6 +276,8 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
     // Welcome message with their first word in their name
     labelWelcome.textContent = `Welcome back! ${currentAcc.owner.split(" ")[0]}`;
+    // Displaying date as per locale
+    labelDate.textContent = new Intl.DateTimeFormat(currentAcc.locale, options).format(now);
     // loading the dashboard for the logged in user
     displayMovements(currentAcc);
     balanceSummary(currentAcc);
