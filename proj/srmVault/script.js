@@ -125,6 +125,14 @@ const formatMovementDate = function (date) {
   }
 };
 
+// Format currencies
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, { 
+    style: 'currency', 
+    currency: currency
+  }).format(value);
+}
+
 // Adding the movements for the money for a single person
 // Passing in the movements array from the object
 const displayMovements = function (currentAccount, sort = false) {
@@ -137,11 +145,15 @@ const displayMovements = function (currentAccount, sort = false) {
     // Formatting and display dates
     const date = new Date(currentAccount.movementsDates[i]);
     const displayDate = formatMovementDate(date);
+    
+    // Displaying currency as per locale
+    const formattedMov = formatCur(mov, currentAccount.locale, currentAccount.currency);
+
     const movementHtml = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type.toUpperCase()}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">$ ${mov}</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", movementHtml);
@@ -193,14 +205,16 @@ const balanceSummary = function (account) {
       return acc + cur;
     }, 0).toFixed(2);
 
-  labelSumIn.textContent = `$ ${incomeSummary}`;
+  // labelSumIn.textContent = `${incomeSummary}`;
+  labelSumIn.textContent = formatCur(incomeSummary, account.locale, account.currency);
 
   // Calculating sum of expenditures
   const expendituresSummary = Math.abs(account.movements
     .filter(mov => mov < 0)
     .reduce((acc, cur) => acc + cur, 0)).toFixed(2);
 
-  labelSumOut.textContent = `$ ${expendituresSummary}`;
+  // labelSumOut.textContent = `${expendituresSummary}`;
+  labelSumOut.textContent = formatCur(expendituresSummary, account.locale, account.currency);
 
   // Calculating interest on deposits
   const interestSummary = account.movements
@@ -208,14 +222,16 @@ const balanceSummary = function (account) {
     .map(newDeposit => newDeposit * (account.interestRate / 100))
     .reduce((acc, cur) => acc + cur, 0).toFixed(2);
 
-  labelSumInterest.textContent = `$ ${interestSummary}`;
+  // labelSumInterest.textContent = `${interestSummary}`;
+  labelSumInterest.textContent = formatCur(interestSummary, account.locale, account.currency);
 
   // Calculating the final account balance
   const finalBal = Number(incomeSummary) + Number(interestSummary) - Number(expendituresSummary);
   // Storing as an property on the account object 
   // as we shall need when implementing transfers
   account.finalBalance = finalBal.toFixed(2);
-  labelBalance.textContent = `$ ${account.finalBalance}`;
+  // labelBalance.textContent = `${account.finalBalance}`;
+  labelBalance.textContent = formatCur(account.finalBalance, account.locale, account.currency);
 };
 
 /////////////////////////////////////////////////
@@ -246,7 +262,6 @@ const options = {
   year: 'numeric',
   weekday: 'long'
 };
-
 
 // Event handler for login button and enter key
 // Enter key - automatically triggers the click when
@@ -330,7 +345,7 @@ btnTransfer.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
-// Implementing close of an account
+// Implementing closing of an account
 
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
