@@ -234,15 +234,42 @@ const balanceSummary = function (account) {
   labelBalance.textContent = formatCur(account.finalBalance, account.locale, account.currency);
 };
 
+// Implementing a logout timer
+const startLogoutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2,0);
+    // Each call, print the remaining time
+    labelTimer.textContent = `${min}:${sec}`;
+    // When timer expires, stop timer and 
+    // logout the user
+    if (time === 0) {
+      clearInterval(bankTimer);
+      // Log out the user
+      // Set opacity to 0
+      labelWelcome.textContent = "Log in to get started";
+      containerApp.style.opacity = 0;
+    }
+    // Decrease the time by 1 second
+    time--;
+  }
+  // Set the time to 5 minutes
+  let time = 10;
+  // Call the function once
+  tick();
+  // Call the timer every second
+  const bankTimer = setInterval(tick, 1000); 
+  return bankTimer;
+};
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
 // Implementing account login
 
-// Variable for storing the username
+// Variable for storing the useraccount, timer state
 // We have other implementations like transfer/ close 
 // so needs to be outside of btnLogin function.
-let currentAcc;
+let currentAcc, timer;
 
 // Displaying the Date as they logged in
 const now = new Date();
@@ -287,6 +314,10 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     // removing the focus from pin field
     inputLoginPin.blur();
+    // Clear previous timer if another
+    // user logs in
+    if (timer) clearInterval(timer);
+    timer = startLogoutTimer();
     // change the opacity to display the dashboard
     containerApp.style.opacity = 100;
     // Welcome message with their first word in their name
@@ -340,6 +371,9 @@ btnTransfer.addEventListener('click', function (e) {
   } else {
     console.log("no");
   }
+  // Reset timer
+  clearInterval(timer);
+  timer = startLogoutTimer();
 });
 
 /////////////////////////////////////////////////
@@ -382,6 +416,9 @@ btnLoan.addEventListener('click', function (e) {
   // clearing out the input values
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
+  // Reset timer
+  clearInterval(timer);
+  timer = startLogoutTimer();
 });
 
 // Variable for maintaing the sorting state
